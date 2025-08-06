@@ -45,13 +45,13 @@ grid-template-rows: auto 1fr;
 }
 
 body, button, input, select, textarea {
-    font-family: var(--encore-body-font-stack, 'SF Pro Text', SpotifyMixUI, var(--fallback-fonts, sans-serif)), sans-serif;
+    font-family: 'San Francisco Pro', 'SF Pro Text', SpotifyMixUI, var(--fallback-fonts, sans-serif), sans-serif;
 }
 
 :root {
-    --encore-body-font-stack: 'SF Pro Text', SpotifyMixUI, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, var(--fallback-fonts, sans-serif);
-    --encore-title-font-stack: 'SF Pro Text', SpotifyMixUITitle, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, var(--fallback-fonts, sans-serif);
-    --encore-variable-font-stack: 'SF Pro Text', SpotifyMixUITitleVariable, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, var(--fallback-fonts, sans-serif);
+    --encore-body-font-stack: 'San Francisco Pro', 'SF Pro Text', SpotifyMixUI, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, var(--fallback-fonts, sans-serif);
+    --encore-title-font-stack: 'San Francisco Pro', 'SF Pro Text', SpotifyMixUITitle, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, var(--fallback-fonts, sans-serif);
+    --encore-variable-font-stack: 'San Francisco Pro', 'SF Pro Text', SpotifyMixUITitleVariable, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, var(--fallback-fonts, sans-serif);
 }
 
 
@@ -789,7 +789,12 @@ margin-right: -50px;
 .encore-text.encore-text-marginal.encore-internal-color-text-subdued.main-trackInfo-artists,
 .encore-text.encore-text-body-small.K9Nj3oI7bTNFh5AGp5GA{
   font-size:16px;
-  margin-left:10px;}
+  margin-left:10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
 
 
   
@@ -1017,7 +1022,7 @@ button[data-testid="control-button-skip-forward"] svg {
 
 .#Desktop_LeftSidebar_Id{
   zoom:1.05;
-  transition: width 0.25s ease;max-width:310px}
+  transition: width 0.25s ease;max-width:500px}
 
 
 .BeautifulLyricsPage.Fullscreen.BeautifulLyricsBackground > div > div.PlayPanel > div.Timeline > div > div.Handle{display:none;}
@@ -1479,7 +1484,44 @@ scale: 0.6;
 [data-testid="album-page"]{
   margin-left:30px;
   margin-right:30px;
-  margin-bottom:-70px;}
+  margin-bottom:-70px;
+  /* CSS variables for easy customization */
+  --album-header-height: 240px;
+  --album-tracklist-gap: -40px;
+  --album-art-size: 232px;
+}
+
+/* 
+ALBUM LAYOUT CUSTOMIZATION - Uncomment and modify any of these to resize album elements:
+
+// Large album art (300px):
+[data-testid="album-page"]{
+  --album-header-height: 300px;
+  --album-tracklist-gap: -60px;
+  --album-art-size: 300px;
+}
+
+// Medium album art (180px):
+[data-testid="album-page"]{
+  --album-header-height: 200px;
+  --album-tracklist-gap: -20px;
+  --album-art-size: 180px;
+}
+
+// Small album art (150px):
+[data-testid="album-page"]{
+  --album-header-height: 180px;
+  --album-tracklist-gap: -10px;
+  --album-art-size: 150px;
+}
+
+// Extra large album art (350px):
+[data-testid="album-page"]{
+  --album-header-height: 360px;
+  --album-tracklist-gap: -80px;
+  --album-art-size: 350px;
+}
+*/
   
 
 
@@ -1492,7 +1534,8 @@ padding-top:20px;}
 
 /*Main text align*/
 [data-testid="album-page"] .iWTIFTzhRZT0rCD0_gOK.contentSpacing .main-entityHeader-headerText{
- height:240px;}
+ height: var(--album-header-height, 240px);
+}
 
 /*Move titles right*/
 [data-testid="album-page"] .main-entityHeader-headerText{
@@ -1562,7 +1605,8 @@ padding-top:20px;}
 
 /*Align tracklist*/
 [data-testid="album-page"] > div:nth-child(4){
-  transform:translateY(-40px) translateX(-5px);}
+  transform: translateY(var(--album-tracklist-gap, -40px)) translateX(-5px);
+}
 
   
 /*Three dots*/
@@ -1586,8 +1630,13 @@ padding-top:20px;}
 [data-testid="album-page"] .main-trackList-rowMainContent div {
 font-weight:300;
 font-size:15px;
-font-family:SF Pro Text;
+font-family: 'San Francisco Pro', 'SF Pro Text', SpotifyMixUI, var(--fallback-fonts, sans-serif);
 letter-spacing:0.25px;
+}
+
+/* Ensure San Francisco font is applied to all album page text elements */
+[data-testid="album-page"] * {
+  font-family: 'San Francisco Pro', 'SF Pro Text', SpotifyMixUI, var(--fallback-fonts, sans-serif) !important;
 }
 
 /*Align tracklist numbers*/
@@ -1609,7 +1658,10 @@ letter-spacing:0.25px;
 
 /*Round main image corners*/
 [data-testid="album-page"] .main-entityHeader-image {
-  border-radius:6px;}
+  border-radius:6px;
+  width: var(--album-art-size, 232px) !important;
+  height: var(--album-art-size, 232px) !important;
+}
 
 .ButtonInner-medium-iconOnly{
   background-color:#fa586a;}
@@ -1965,7 +2017,13 @@ font-size:22px;
   width:0px;
 }
 
-/*Back/forward buttons*/
+/*Back/forward buttons - Move to left of profile button*/
+.main-globalNav-historyButtonsContainer {
+  transform: translateX(200px) !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
 .main-globalNav-historyButtonsContainer [aria-label="Go back"] span svg path{
  d:path("M344.727,306.176 L207.52,169.457 C203.613,165.551 201.66,161.156 201.66,156.273 C201.66,150.74 203.613,146.345 207.52,143.09 L344.727,6.37109 C348.307,2.79036 352.702,1 357.91,1 C363.118,1 367.513,2.79036 371.094,6.37109 C374.674,9.95182 376.465,14.3464 376.465,19.5547 C376.465,24.4375 374.674,28.832 371.094,32.7383 L236.328,166.527 L236.328,146.02 L371.094,279.809 C374.674,283.715 376.465,288.109 376.465,292.992 C376.465,298.201 374.674,302.595 371.094,306.176 C367.513,309.757 363.118,311.547 357.91,311.547 C352.702,311.547 348.307,309.757 344.727,306.176 ");
   scale:0.07;
@@ -1985,37 +2043,6 @@ font-size:22px;
   .sikBfynL1Y6I25nVpbAg [data-encore-id="formInput"]{
   background-color:Transparent!important;
 }
-
-/*Remove homepage*/
-
-.T0fKO6B7LQSCE_VaSM1P:has([data-testid="home-page"]){
-  position: relative;
-  width: 100%;
-  height: 100vh; 
-  overflow: hidden;
-}
-
-.T0fKO6B7LQSCE_VaSM1P:has([data-testid="home-page"]):before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 1960px;
-  height: 1100px;
-  background-image: url('https://www.apple.com/newsroom/images/product/services/standard/Apple-Music-100-million-songs-hero_big.jpg.slideshow-large_2x.jpg');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.T0fKO6B7LQSCE_VaSM1P:has([data-testid="home-page"]) * {
-  display: none;
-}
-
-
-
 
 /*Default grid view play button*/
 .main-yourLibraryX-libraryContainer ._7kcfiJ2UNEh3CDR9Wau{
@@ -2296,7 +2323,7 @@ color:rgba(255, 255, 255, 0.64);}
 .Root__now-playing-bar #BeautifulLyricsFullscreenButton:hover{
   opacity:1;}
   
-  #Desktop_LeftSidebar_Id{max-width: 16vw;}
+  #Desktop_LeftSidebar_Id{max-width: 28vw;}
 .Root__right-sidebar{max-width: 14vw;}
 
 .main-topBar-background {
@@ -2485,13 +2512,112 @@ background-position: center;
     margin: auto;
     left: -10px;
     top: -02px;
-    max-width: 70%;
+    max-width: 65%;
+    min-width: 180px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
 }
 .main-trackInfo-artists{
 justify-content: center;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+max-width: 100%;
+width: 100%;
+text-align: center;
+display: flex;
+align-items: center;
 }
 
 .main-nowPlayingBar-left, .main-nowPlayingBar-right{-webkit-app-region: drag;}
+
+/* Fix track title overflow */
+.main-nowPlayingWidget-trackInfo .main-trackInfo-name,
+.main-trackInfo-name,
+.main-nowPlayingWidget-trackInfo [data-encore-id="text"],
+.main-nowPlayingWidget-trackInfo .encore-text {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 100% !important;
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+/* Ensure track info container is flexible */
+.main-nowPlayingWidget-trackInfo {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+/* Fix artist links overflow */
+.main-trackInfo-artists a,
+.main-trackInfo-artists span,
+.main-trackInfo-artists [data-encore-id="text"] {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 100% !important;
+  display: inline-block !important;
+  text-align: center !important;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1400px) {
+  .main-nowPlayingWidget-trackInfo.main-trackInfo-container {
+    max-width: 50% !important;
+    min-width: 150px !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .main-nowPlayingWidget-trackInfo.main-trackInfo-container {
+    max-width: 45% !important;
+    min-width: 130px !important;
+    scale: 1.0 !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .main-nowPlayingWidget-trackInfo.main-trackInfo-container {
+    max-width: 40% !important;
+    min-width: 110px !important;
+    scale: 0.95 !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .main-nowPlayingWidget-trackInfo.main-trackInfo-container {
+    max-width: 35% !important;
+    min-width: 90px !important;
+    scale: 0.9 !important;
+  }
+  
+  .encore-text.encore-text-marginal.encore-internal-color-text-subdued.main-trackInfo-artists,
+  .encore-text.encore-text-body-small.K9Nj3oI7bTNFh5AGp5GA {
+    font-size: 13px !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .main-nowPlayingWidget-trackInfo.main-trackInfo-container {
+    max-width: 30% !important;
+    min-width: 70px !important;
+    scale: 0.85 !important;
+  }
+  
+  .encore-text.encore-text-marginal.encore-internal-color-text-subdued.main-trackInfo-artists,
+  .encore-text.encore-text-body-small.K9Nj3oI7bTNFh5AGp5GA {
+    font-size: 11px !important;
+  }
+}
 
 
 

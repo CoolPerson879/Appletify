@@ -3,7 +3,7 @@
 </h3>
 <div align="center">
   <h1>Appletify but different</h1>
-  <p>Made some changes to the original Appletify to bring back some of the spotify to appletify</p>
+ Made some changes to the original Appletify to bring back some of the spotify to appletify</p>
   Check out the original [here](https://github.com/raysin1/Appletify)
 
 _credit to [raysin1](https://github.com/raysin1/Appletify) for this great theme_

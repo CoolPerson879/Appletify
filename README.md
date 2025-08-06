@@ -2,7 +2,7 @@
 	<img src="https://github.com/raysin1/Appletify/blob/main/screenshots/icon.png?raw=true" width="80" alt="Logo"/><br/>
 </h3>
 <div align="center">
-  <h1>Appletify but different</h1>
+  <h1>Appletify but better</h1>
  Made some changes to the original Appletify to bring back some of the spotify to appletify
 
 _credit to [raysin1, the original creator](https://github.com/raysin1/Appletify) for this great theme_
